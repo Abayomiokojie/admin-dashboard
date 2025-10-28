@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 // import "react-pro-sidebar/dist/css/styles.css";
-import { Box, IconButton, useTheme, Typography, colors } from "@mui/material";
+import { Box, IconButton, useTheme, Typography, 
+    // colors
+ } from "@mui/material";
 import { Link } from "react-router-dom";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -26,7 +28,6 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
             component={<Link to={to} />} // Use component prop for react-router-dom Link
             onClick={() => setSelected(title)}
             icon={icon}
-            style={{color: colors.grey[100]}}
         >
             <Typography>{title}</Typography>
         </MenuItem>
@@ -43,20 +44,21 @@ const SideBar = () => {
 
     const menuItemStyles = {
         root: {
-            color: colors.grey[700],
+            color: colors.grey[100],
         },
         icon: {
             backgroundColor: "transparent !important",
-
         },
         button: {
             padding: "5px 35px 5px 20px !important",
             '&:hover': {
-                color: `${colors.blueAccent[400]} !important`,
+                // color: `${colors.blueAccent[400]} !important`,
+                color: '#868dfb !important',
                 backgroundColor: 'transparent !important',
             },
             '&.active': {
-                color: `${colors.blueAccent[500]} !important`,
+                // color: `${colors.blueAccent[500]} !important`,
+                color: '#6870fa !important',
                 backgroundColor: 'transparent !important',
               
             },
@@ -64,19 +66,22 @@ const SideBar = () => {
     };
 
     return (
-        <Box>
+        <Box
+        // style={{ backgroundColor: colors.redAccent[600], width:'50%' }}
+        >
             <Sidebar collapsed={isCollapsed}
             backgroundColor={`${colors.primary[400]} !important`}
-            // backgroundColor="#1f2840 !important"
                 rootStyles={{
                     height: "100%",
+                    border:"none !important",
                 }}
+                
             >
                 <Menu menuItemStyles={menuItemStyles}>
                     {/* LOGO AND MENU ICON */}
                     <MenuItem
                         onClick={() => setIsCollapsed(!isCollapsed)}
-                        icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
+                        icon={isCollapsed ? <MenuOutlinedIcon style={{color: colors.primary[100]}} /> : undefined}
                         style={{
                             margin: "10px 0 20px 0",
                         }}>
@@ -88,15 +93,19 @@ const SideBar = () => {
                                 alignItems="center"
                                 ml="15px"
                             >
-                                <Typography variant="h3" color={colors.grey[100]}>
+                                <Typography variant="h4" color={colors.grey[100]}
+                                sx={{ fontWeight: 'bold' }}
+                                >
                                     ADMIN
                                 </Typography>
                                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
-                                    <MenuOutlinedIcon />
+                                    <MenuOutlinedIcon  />
                                 </IconButton>
                             </Box>
                         )}
                     </MenuItem>
+
+                    {/* USER PROFILE*/}
                     {!isCollapsed && (
                         <Box mb="25px">
                             <Box display="flex" justifyContent="center" alignItems="center">
@@ -117,13 +126,14 @@ const SideBar = () => {
                                     Mike Kale
                                 </Typography>
                                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                                    VP Fancy Admin
+                                    VP FinOps.
                                 </Typography>
                             </Box>
                         </Box>
                     )}
 
-                    <Box paddingLeft={isCollapsed ? undefined : "10%"}>
+{/* MENU ITEMS*/}
+                    <Box paddingLeft={isCollapsed ? undefined : "3%"}>
                         <Item
                             title="Dashboard"
                             to="/"

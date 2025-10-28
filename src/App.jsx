@@ -1,10 +1,11 @@
-// import { useState } from 'react'
-import { Route, Routes } from "react-router-dom";
+import { 
+  // Route, 
+  Routes } from "react-router-dom";
 import Topbar from "./scenes/global/topbar";
 import { ColorModeContext, useMode } from "./theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-// import Dashboard from "./scenes/dashboard";
 import SideBar from "./scenes/global/sidebar";
+// import Dashboard from "./scenes/dashboard";
 // import Team from "./scenes/team";
 // import Invoices from "./scenes/invoices";
 // import Contacts from "./scenes/contacts";
@@ -24,9 +25,9 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div className="app">
+            <SideBar />
           <main className="content">
             <Topbar />
-            <SideBar />
             <Routes>
               {/* <Route path="/" element={<Dashboard />} />
               <Route path="/team" element={<Team />} />
