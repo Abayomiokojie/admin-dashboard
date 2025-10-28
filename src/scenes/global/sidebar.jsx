@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 // import "react-pro-sidebar/dist/css/styles.css";
-import { Box, IconButton, useTheme, Typography } from "@mui/material";
+import { Box, IconButton, useTheme, Typography, colors } from "@mui/material";
 import { Link } from "react-router-dom";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -20,20 +20,15 @@ import PropTypes from "prop-types";
 
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
-    const theme = useTheme();
-    const colors = tokens(theme.palette.mode);
     return (
         <MenuItem
             active={selected === title}
-            style={{
-                color: colors.grey[100],
-                // backgrndColor: colors.primary[600],
-            }}
+            component={<Link to={to} />} // Use component prop for react-router-dom Link
             onClick={() => setSelected(title)}
             icon={icon}
+            style={{color: colors.grey[100]}}
         >
             <Typography>{title}</Typography>
-            <Link to={to} />
         </MenuItem>
     );
 };
@@ -42,69 +37,64 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 const SideBar = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
+
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [selected, setSelected] = useState("Dashboard");
 
+    const menuItemStyles = {
+        root: {
+            color: colors.grey[700],
+        },
+        icon: {
+            backgroundColor: "transparent !important",
+
+        },
+        button: {
+            padding: "5px 35px 5px 20px !important",
+            '&:hover': {
+                color: `${colors.blueAccent[400]} !important`,
+                backgroundColor: 'transparent !important',
+            },
+            '&.active': {
+                color: `${colors.blueAccent[500]} !important`,
+                backgroundColor: 'transparent !important',
+              
+            },
+        },
+    };
 
     return (
-        <Box sx={{
-            "& .pro-sidebar-inner": {
-                background: `${colors.primary[400]} !important`,
-            },
-            "& .pro-icon-wrapper": {
-                backgroundColor: "transparent !important",
-            },
-            "& .pro-inner-item": {
-                padding: "5px 35px 5px 20px !important",
-            },
-            "& .pro-inner-item:hover": {
-                color: "#868dfb !important",
-            },
-            "& .pro-menu-item.active": {
-                color: "#6870fa !important",
-            },
-        }}>
+        <Box>
             <Sidebar collapsed={isCollapsed}
+            backgroundColor={`${colors.primary[400]} !important`}
+            // backgroundColor="#1f2840 !important"
                 rootStyles={{
                     height: "100%",
-                    backgroundColor: `${colors.primary[400]}`,
-
                 }}
             >
-                <Menu iconShape="square">
+                <Menu menuItemStyles={menuItemStyles}>
                     {/* LOGO AND MENU ICON */}
                     <MenuItem
                         onClick={() => setIsCollapsed(!isCollapsed)}
                         icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
                         style={{
                             margin: "10px 0 20px 0",
-                            color: colors.grey[100],
                         }}>
 
                         {!isCollapsed && (
-
-                            <Box display="flex" justifyContent="center" alignItems="center">
-                                <img
-                                    alt="profile-user"
-                                    width="100px"
-                                    height="100px"
-                                    src={`../../assets/user.png`}
-                                    style={{ cursor: "pointer", borderRadius: "50%" }}
-                                />
-                                <Typography
-                                    variant="h3"
-                                    color={colors.grey[100]}
-                                // fontWeight="bold"
-                                // sx={{ m: "10px 0 0 0" }}
-                                >
+                            <Box
+                                display="flex"
+                                justifyContent="space-between"
+                                alignItems="center"
+                                ml="15px"
+                            >
+                                <Typography variant="h3" color={colors.grey[100]}>
                                     ADMIN
                                 </Typography>
-
                                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                                     <MenuOutlinedIcon />
                                 </IconButton>
                             </Box>
-
                         )}
                     </MenuItem>
                     {!isCollapsed && (
@@ -114,9 +104,8 @@ const SideBar = () => {
                                     alt="profile-user"
                                     width="100px"
                                     height="100px"
-                                    src={`../../assets/user.png`}
-                                    style={{ cursor: "pointer", borderRadius: "50%" }}
-                                />
+                                    src={`../../../assets/user.jpg`}
+                                    style={{ cursor: "pointer", borderRadius: "50%" }} />
                             </Box>
                             <Box textAlign="center">
                                 <Typography
@@ -125,7 +114,7 @@ const SideBar = () => {
                                     fontWeight="bold"
                                     sx={{ m: "10px 0 0 0" }}
                                 >
-                                    Ed Roh
+                                    Mike Kale
                                 </Typography>
                                 <Typography variant="h5" color={colors.greenAccent[500]}>
                                     VP Fancy Admin
