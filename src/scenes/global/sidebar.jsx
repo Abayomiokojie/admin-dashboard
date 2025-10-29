@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
-// import "react-pro-sidebar/dist/css/styles.css";
 import { Box, IconButton, useTheme, Typography, 
     // colors
  } from "@mui/material";
@@ -66,9 +65,7 @@ const SideBar = () => {
     };
 
     return (
-        <Box
-        // style={{ backgroundColor: colors.redAccent[600], width:'50%' }}
-        >
+        <Box>
             <Sidebar collapsed={isCollapsed}
             backgroundColor={`${colors.primary[400]} !important`}
                 rootStyles={{
