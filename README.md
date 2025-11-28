@@ -16,8 +16,6 @@ This is a feature-rich and responsive Admin Dashboard built with modern web tech
 
 ## 📸 Screenshots
 
-_A picture is worth a thousand words. Add screenshots or a GIF of your project in action._
-
 **Main Dashboard View**
 ![Main Dashboard](https://via.placeholder.com/800x450.png?text=Main+Dashboard+Screenshot)
 
